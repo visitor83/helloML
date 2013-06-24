@@ -1,0 +1,16 @@
+for i = 1: num_movies
+  idx = find (R(i, :) == 1);
+  Theta_temp =  Theta(idx, :);
+  Y_temp = Y(i, idx);
+
+  X_grad(i, :) = (X(i, :) * Theta_temp' - Y_temp) * Theta_temp;
+end
+
+
+for j = 1 : num_users
+  idx = find (R(:, j) == 1)
+  Theta_temp = Theta(j, :);
+  Y_temp = Y(idx, j);
+
+   Theta_grad(j, :) = X(idx,:)' * (X(idx, :) * Theta_temp' - Y_temp);
+end
